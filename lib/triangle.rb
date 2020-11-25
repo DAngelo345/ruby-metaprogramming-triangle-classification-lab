@@ -14,13 +14,32 @@ class Triangle
     kind2 = :isosceles
     kind3 = :scalene
 
+
+    if side1 <= 0 || side2 <= 0 || side3 <= 0
+        raise TriangleError 
+    elsif
+      side1 + side2 <= side3 || side3 + side2 <= side1 || side3 + side1 <= side2
+      raise TriangleError  
+    end
+
+
     if side1 == side2 && side2 == side3 && side1 == side3
       kind1
-    elsif side1 == side2 && side2 != side3  
-   return kind2
-    elsif side1 != side2 && side2 != side3
-   kind3
+    elsif side1 == side2 && side2 != side3 || side3 == side2 && side1 != side2 || side1 == side3 && side2 != side3
+      kind2
+    elsif side1 != side2 && side2 != side3 && side3 != side1
+      kind3
+    end 
+  end
+
+
+   class TriangleError < StandardError
+
+    def message
+      "Is not triangel"
+    end
+
+   end
   
-  end
-  end
+  
 end
